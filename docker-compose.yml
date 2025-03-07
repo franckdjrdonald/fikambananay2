@@ -11,12 +11,13 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
 
   app:
-    build: .
+    build:
+      dockerfile: Dockerfile
     container_name: spring_fikambananay
     restart: always
     depends_on:
@@ -28,7 +29,7 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.MySQL8Dialect
     ports:
-      - "8082:8082"
+      - "3306:3306"
 
 volumes:
   db_data:
